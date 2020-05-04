@@ -8,7 +8,7 @@
   <artifactId>ProgrammersBonfire</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>SpringNotes</name>
+  <name>ProgrammersBonfire</name>
   <packaging>jar</packaging>
 
   <properties>
