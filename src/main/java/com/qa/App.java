@@ -1,4 +1,4 @@
-package service;
+package com.qa;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.SpringApplication;

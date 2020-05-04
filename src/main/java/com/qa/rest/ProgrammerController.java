@@ -1,11 +1,10 @@
-package rest;
+package com.qa.rest;
 
 
-import domain.Programmer;
-import service.ProgrammerService;
+import com.qa.domain.Programmer;
+import com.qa.service.ProgrammerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import javax.websocket.server.PathParam;
 
 import java.util.List;
 
@@ -15,7 +14,7 @@ public class ProgrammerController {
     private final ProgrammerService service;
 
     @Autowired
-    public ProgrammerController(ProgrammerController service) {this.service = service; }
+    public ProgrammerController(ProgrammerService service) {this.service = service; }
 
     @GetMapping("/getAllProgrammers")
     public List<Programmer> getAllProgrammers() {return this.service.readProgrammers(); }

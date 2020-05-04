@@ -1,4 +1,4 @@
-package ProgrammerNotFoundException;
+package com.qa.ProgrammerNotFoundException;
 
 
 import org.springframework.http.HttpStatus;
