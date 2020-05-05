@@ -3,9 +3,9 @@ package com.qa.service;
 import com.qa.domain.Programmer;
 import com.qa.domain.ProgrammerTeam;
 
-import com.qa.ProgrammerNotFoundException.ProgrammerNotFoundException;
+import com.qa.ProgrammerNotFoundException.ProgrammerTeamNotFoundException;
 
-import com.qa.repo.ProgrammerRepository;
+import com.qa.repo.ProgrammerRepository; // might not be needed 
 import com.qa.repo.ProgrammerTeamRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ public ProgrammerTeam createProgrammerTeam(ProgrammerTeam programmerTeam){
 }
 
 public ProgrammerTeam findProgrammerTeamById(Long id){
-    return this.repo.findById(id).orElseThrow(programmerTeamNotFoundException::new);
+    return this.repo.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
 }
 
 public ProgrammerTeam updateProgrammerTeam(Long id, Programmer programmer){
