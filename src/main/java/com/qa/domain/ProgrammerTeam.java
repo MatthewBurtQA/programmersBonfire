@@ -10,10 +10,9 @@ public class ProgrammerTeam {
     @Id
     @GeneratedValue
     private Long id;
-
     private String name; // team name
 
-    @OneToMany(mappedBy = "programmerTeam", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "programmer", fetch = FetchType.LAZY)
     private List<Programmer> programmers = new ArrayList<>();
 
      public ProgrammerTeam() {
@@ -37,6 +36,10 @@ public class ProgrammerTeam {
 
     public List<Programmer> getProgrammers(){
          return programmers;
+    }
+
+    public void setProgrammers(List<Programmer> programmers){
+         this.programmers = programmers;
     }
 
 }

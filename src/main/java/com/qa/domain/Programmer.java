@@ -1,9 +1,6 @@
 package com.qa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 //below line states this class will be an entity in the databasse
 
@@ -17,6 +14,9 @@ public class Programmer {
     private String surname;
     private int age;
     private String jobroll;
+
+    @ManyToOne(targetEntity = ProgrammerTeam.class)
+    private ProgrammerTeam programmer;
 
     public Long getId() {return id;}
     public void setId(Long id){this.id = id;}
