@@ -18,7 +18,7 @@ public class ProgrammerController {
     @Autowired
     public ProgrammerController(ProgrammerService service) {this.service = service; }
 
-    @GetMapping("/getAllProgrammers")
+    @GetMapping("/getAllProgrammers") //DTOtime
     public List<Programmer> getAllProgrammers() {return this.service.readProgrammers(); }
 
     @GetMapping("/createProgrammer")

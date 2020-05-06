@@ -1,6 +1,7 @@
 package com.qa.domain;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 //below line states this class will be an entity in the databasse
 
@@ -33,4 +34,21 @@ public class Programmer {
     public String getJobroll() {return jobroll;}
     public void setJobroll(String jobroll){this.jobroll = jobroll;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Programmer that = (Programmer) o;
+        return age == that.age &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(surname, that.surname) &&
+                Objects.equals(jobroll, that.jobroll) &&
+                Objects.equals(programmer, that.programmer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, age, jobroll, programmer);
+    }
 }

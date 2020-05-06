@@ -5,7 +5,7 @@ import com.qa.domain.Programmer;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// below is a DTO, which is an object for transfering data. Simples.
 public class ProgrammerDTO {
     private Long id; // sets the ID to id, generated using auto gen
     private String name;
