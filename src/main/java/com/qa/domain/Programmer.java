@@ -15,6 +15,19 @@ public class Programmer {
     private String surname;
     private int age;
     private String jobroll;
+    // default empty constructer THEN
+    // constructor with name surname age jobrole
+
+    public Programmer(){
+        // empty constructor for blanks
+    }
+
+    public Programmer(String name, String surname, int age, String jobroll){
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
+        this.jobroll = jobroll;
+    }
 
     @ManyToOne(targetEntity = ProgrammerTeam.class)
     private ProgrammerTeam programmer;

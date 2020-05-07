@@ -27,10 +27,7 @@ public class ProgrammerController {
     public ResponseEntity<List<ProgrammerDTO>> getAllProgrammers() {return ResponseEntity.ok(this.service.readProgrammers()); }
 
     @GetMapping("/createProgrammer")
-    //public Programmer createProgrammer(@RequestBody Programmer programmer)//{}
-    //{return this.service.createProgrammer(programmer);}
     public ResponseEntity<ProgrammerDTO> createProgrammer(@RequestBody Programmer programmer) {
-        //return new ResponseEntity<ProgrammerDTO>(this.service.createProgrammer(programmer), HttpStatus.CREATED);
         return new ResponseEntity<ProgrammerDTO>(this.service.createProgrammer(programmer), HttpStatus.CREATED);
 
     }
