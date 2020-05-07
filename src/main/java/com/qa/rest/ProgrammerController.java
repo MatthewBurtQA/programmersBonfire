@@ -26,13 +26,13 @@ public class ProgrammerController {
     //public List<Programmer> getAllProgrammers() {return this.service.readProgrammers(); }
     public ResponseEntity<List<ProgrammerDTO>> getAllProgrammers() {return ResponseEntity.ok(this.service.readProgrammers()); }
 
-    @GetMapping("/createProgrammer")
+    @PostMapping("/createProgrammer")
     public ResponseEntity<ProgrammerDTO> createProgrammer(@RequestBody Programmer programmer) {
         return new ResponseEntity<ProgrammerDTO>(this.service.createProgrammer(programmer), HttpStatus.CREATED);
 
     }
 
-        @DeleteMapping("/deleteNote/{id}")
+        @DeleteMapping("/deleteProgrammer/{id}")
    // public boolean deleteNote(@PathVariable Long id){
    //     return this.service.deleteProgrammer(id);
     //}

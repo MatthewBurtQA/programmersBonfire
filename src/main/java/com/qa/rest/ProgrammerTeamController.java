@@ -29,7 +29,7 @@ public class ProgrammerTeamController {
     public ResponseEntity<List<ProgrammerTeamDTO>> getAllProgrammers() {
         return ResponseEntity.ok(this.service.readProgrammerTeams());
     }
-    //should be post
+
     @PostMapping("/createProgrammerTeam")
     public ResponseEntity<ProgrammerTeamDTO> createProgrammer(@RequestBody ProgrammerTeam programmer){
         return new ResponseEntity<ProgrammerTeamDTO>(this.service.createProgrammerTeam(programmer), HttpStatus.CREATED);

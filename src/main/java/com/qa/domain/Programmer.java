@@ -15,8 +15,6 @@ public class Programmer {
     private String surname;
     private int age;
     private String jobroll;
-    // default empty constructer THEN
-    // constructor with name surname age jobrole
 
     public Programmer(){
         // empty constructor for blanks
