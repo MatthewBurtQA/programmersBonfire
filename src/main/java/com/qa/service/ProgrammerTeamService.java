@@ -16,14 +16,19 @@ import java.util.stream.Collectors;
 @Service
 public class ProgrammerTeamService {
 
-    private final ProgrammerTeamRepository repo;
-
+    private final ProgrammerTeamRepository programmerTeamRepository;
+    private final ProgrammerRepository programmerRepository;
     private final ModelMapper mapper;
 
     @Autowired
-    public ProgrammerTeamService(ProgrammerTeamRepository repo, ModelMapper mapper) {
-        this.repo = repo;
+    public ProgrammerTeamService(ProgrammerTeamRepository programmerTeamRepository,
+            ProgrammerRepository programmerRepository, ModelMapper mapper) {
+        this.programmerTeamRepository = programmerTeamRepository;
+        this.programmerRepository = programmerRepository;
         this.mapper = mapper;
+
+        //this.repo = repo;
+        //this.mapper = mapper;
     }
 
     private ProgrammerTeamDTO mapToDTO(ProgrammerTeam programmerTeam) {
@@ -32,19 +37,20 @@ public class ProgrammerTeamService {
 
     public List<ProgrammerTeamDTO> readProgrammerTeams()
     {
-        return this.repo.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
+        return this.programmerTeamRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
 
-        //return this.repo.findAll();
     }
 
     public ProgrammerTeamDTO createProgrammerTeam(ProgrammerTeam programmerTeam) {
 
-        //return this.repo.save(programmerTeam);
-        return this.mapToDTO(this.repo.save(programmerTeam));
+        return this.mapToDTO(this.programmerTeamRepository.save(programmerTeam));
     }
 
-    public ProgrammerTeam findProgrammerTeamById(Long id) {
-        return this.repo.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
+    public ProgrammerTeamDTO findProgrammerTeamById(Long id) {
+        //return this.mapToDTO(this.programmerTeamRepository.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new));
+        return this.mapToDTO(this.programmerTeamRepository.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new));
+
+        //return this.repo.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
     }
 
   //  public ProgrammerTeam updateProgrammerTeam(Long id, Programmer programmer) {
@@ -54,15 +60,18 @@ public class ProgrammerTeamService {
    // }
 
     public boolean deleteProgrammerTeam(Long id) {
-        if (!this.repo.existsById(id)) {
+        if (!this.programmerTeamRepository.existsById(id)) {
             throw new ProgrammerTeamNotFoundException();
         }
-        this.repo.deleteById(id);
-        return this.repo.existsById(id);
+        this.programmerTeamRepository.deleteById(id);
+        return this.programmerTeamRepository.existsById(id);
     }
 
     public ProgrammerTeamDTO addProgrammerToProgrammerTeam(Long id, Programmer programmer){
-        ProgrammerTeam progTeam = this.ProgrammerTeamRepository.findByID(id).orElseThrow()
+        ProgrammerTeam programmerTeam = this.programmerTeamRepository.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
+        Programmer tmp = this.programmerRepository.saveAndFlush(programmer); // save to temp var then VVV
+        programmerTeam.getProgrammers().add(tmp); // added temp to programmerTeam
+        return this.mapToDTO(this.programmerTeamRepository.saveAndFlush(programmerTeam));
     }
 
 }
