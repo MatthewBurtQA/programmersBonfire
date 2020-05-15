@@ -12,7 +12,7 @@ public class ProgrammerTeam {
     private Long id;
     private String name; // team name
 
-    @OneToMany(mappedBy = "programmer", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "team", fetch = FetchType.LAZY)
     private List<Programmer> programmers = new ArrayList<>();
 
      public ProgrammerTeam() {

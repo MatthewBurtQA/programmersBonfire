@@ -28,7 +28,7 @@ public class Programmer {
     }
 
     @ManyToOne(targetEntity = ProgrammerTeam.class)
-    private ProgrammerTeam programmer;
+    private ProgrammerTeam team;
 
     public Long getId() {return id;}
     public void setId(Long id){this.id = id;}
@@ -55,11 +55,11 @@ public class Programmer {
                 Objects.equals(name, that.name) &&
                 Objects.equals(surname, that.surname) &&
                 Objects.equals(jobroll, that.jobroll) &&
-                Objects.equals(programmer, that.programmer);
+                Objects.equals(team, that.team);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, surname, age, jobroll, programmer);
+        return Objects.hash(id, name, surname, age, jobroll, team);
     }
 }

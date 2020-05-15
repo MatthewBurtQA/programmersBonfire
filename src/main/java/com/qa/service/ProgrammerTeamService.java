@@ -53,11 +53,11 @@ public class ProgrammerTeamService {
         //return this.repo.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
     }
 
-  //  public ProgrammerTeam updateProgrammerTeam(Long id, Programmer programmer) {
-    //    ProgrammerTeam update = findProgrammerTeamById(id);
-      //  update.setName(programmer.getName());
-        //return this.repo.save(update);
-   // }
+    public ProgrammerTeamDTO updateProgrammerTeam(Long id, ProgrammerTeam team) {
+        ProgrammerTeam toUpdate = this.programmerTeamRepository.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
+        toUpdate.setName(team.getName());
+        return this.mapToDTO(this.programmerTeamRepository.save(toUpdate));
+    }
 
     public boolean deleteProgrammerTeam(Long id) {
         if (!this.programmerTeamRepository.existsById(id)) {
@@ -68,10 +68,9 @@ public class ProgrammerTeamService {
     }
 
     public ProgrammerTeamDTO addProgrammerToProgrammerTeam(Long id, Programmer programmer){
-        ProgrammerTeam programmerTeam = this.programmerTeamRepository.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
+        ProgrammerTeam toUpdate = this.programmerTeamRepository.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
         Programmer tmp = this.programmerRepository.save(programmer); // save to temp var then VVV
-        programmerTeam.getProgrammers().add(tmp); // added temp to programmerTeam
-        return this.mapToDTO(this.programmerTeamRepository.saveAndFlush(programmerTeam));
+        toUpdate.getProgrammers().add(tmp); // added temp to programmerTeam
+        return this.mapToDTO(this.programmerTeamRepository.saveAndFlush(toUpdate));
     }
-
 }

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import javax.websocket.server.PathParam;
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -20,14 +21,12 @@ public class ProgrammerTeamController {
 
     @Autowired
     public ProgrammerTeamController(ProgrammerTeamService service){
+        super(); // added on the 15th...heh.
         this.service = service;
     }
 
     @GetMapping("/getAllProgrammerTeams")
-   // public List<ProgrammerTeam> getAllProgrammers(){
-     //   return this.service.readProgrammerTeams();
-    //}
-    public ResponseEntity<List<ProgrammerTeamDTO>> getAllProgrammers() {
+    public ResponseEntity<List<ProgrammerTeamDTO>> getAllProgrammerTeams() {
         return ResponseEntity.ok(this.service.readProgrammerTeams());
     }
 
@@ -37,14 +36,7 @@ public class ProgrammerTeamController {
     }
 
 
-   // public ProgrammerTeam createProgrammer(@RequestBody ProgrammerTeam programmer){
-  //      return this.service.createProgrammerTeam(programmer);
-   // }
-
     @DeleteMapping("/deleteProgrammerTeam/{id}")
-    //public boolean deleteProgrammer(@PathVariable Long id){
-      //  return this.service.deleteProgrammerTeam(id);
-    //}
     public ResponseEntity<?> deleteProgrammerTeam(@PathVariable Long id){
     return this.service.deleteProgrammerTeam(id)
             ? ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
@@ -56,24 +48,22 @@ public class ProgrammerTeamController {
         return ResponseEntity.ok(this.service.findProgrammerTeamById(id));
     }
 
-//    @PutMapping("/updateProgrammerTeam/{id}")
-//    public ResponseEntity<ProgrammerTeamDTO> updateProgrammerTeam(@PathVariable Long id, @RequestBody ProgrammerTeam programmer){
-//        return ResponseEntity.ok(this.service.updateProgrammerTeam(id, programmer));
-//    }
+    @PutMapping("/updateProgrammerTeam")
+    public ResponseEntity<ProgrammerTeamDTO> updateProgrammerTeam(@PathParam("id") Long id, @RequestBody ProgrammerTeam team){
+        return new ResponseEntity<ProgrammerTeamDTO>(this.service.updateProgrammerTeam(id, team), HttpStatus.ACCEPTED);
+    }
 
+    @PatchMapping("/updateProgrammerTeam/{id}")
+    public ResponseEntity<ProgrammerTeamDTO> addProgrammerToProgrammerTeam(@PathVariable Long id, @RequestBody Programmer programmer){
+        return new ResponseEntity<ProgrammerTeamDTO>(this.service.addProgrammerToProgrammerTeam(id, programmer), HttpStatus.ACCEPTED);
+    }
 
-    //public ProgrammerTeam getProgrammerTeamById(@PathVariable Long id, @RequestBody ProgrammerTeam programmer){
-    //    return this.service.findProgrammerTeamById(id);
-    //}
 
     //@PutMapping("/updateProgrammerTeam/{id}")
     //public ProgrammerTeam updateProgrammerTeam(@PathVariable Long id, @RequestBody ProgrammerTeam programmer){
     //    return this.service.updateProgrammerTeam(id, programmer);
     //}
 
-//    @PutMapping("/updateProgrammerTeam")
-//    public ProgrammerTeam updateProgrammer(@PathParam("id") Long id, @RequestBody Programmer programmer){
-//        return this.service.updateProgrammerTeam(id, programmer);
-//    }
+
 
 }
