@@ -13,6 +13,7 @@ import javax.websocket.server.PathParam;
 import java.util.List;
 
 @RestController
+@RequestMapping("/programmerTeam") // NEW
 public class ProgrammerTeamController {
 
     private final ProgrammerTeamService service;
@@ -31,8 +32,8 @@ public class ProgrammerTeamController {
     }
 
     @PostMapping("/createProgrammerTeam")
-    public ResponseEntity<ProgrammerTeamDTO> createProgrammer(@RequestBody ProgrammerTeam programmer){
-        return new ResponseEntity<ProgrammerTeamDTO>(this.service.createProgrammerTeam(programmer), HttpStatus.CREATED);
+    public ResponseEntity<ProgrammerTeamDTO> createProgrammerTeam(@RequestBody ProgrammerTeam programmerTeam){
+        return new ResponseEntity<ProgrammerTeamDTO>(this.service.createProgrammerTeam(programmerTeam), HttpStatus.CREATED);
     }
 
 
@@ -44,19 +45,19 @@ public class ProgrammerTeamController {
     //public boolean deleteProgrammer(@PathVariable Long id){
       //  return this.service.deleteProgrammerTeam(id);
     //}
-    public ResponseEntity<?> deleteProgrammer(@PathVariable Long id){
+    public ResponseEntity<?> deleteProgrammerTeam(@PathVariable Long id){
     return this.service.deleteProgrammerTeam(id)
             ? ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build()
             : ResponseEntity.noContent().build();
     }
 
     @GetMapping("/getProgrammerTeamById/{id}")
-    public ResponseEntity<ProgrammerTeamDTO> getProgrammerById(@PathVariable Long id){
+    public ResponseEntity<ProgrammerTeamDTO> getProgrammerTeamById(@PathVariable Long id){
         return ResponseEntity.ok(this.service.findProgrammerTeamById(id));
     }
 
 //    @PutMapping("/updateProgrammerTeam/{id}")
-//    public ResponseEntity<ProgrammerTeamDTO> updateProgrammer(@PathVariable Long id, @RequestBody ProgrammerTeam programmer){
+//    public ResponseEntity<ProgrammerTeamDTO> updateProgrammerTeam(@PathVariable Long id, @RequestBody ProgrammerTeam programmer){
 //        return ResponseEntity.ok(this.service.updateProgrammerTeam(id, programmer));
 //    }
 
@@ -66,7 +67,7 @@ public class ProgrammerTeamController {
     //}
 
     //@PutMapping("/updateProgrammerTeam/{id}")
-    //public ProgrammerTeam updateProgrammer(@PathVariable Long id, @RequestBody ProgrammerTeam programmer){
+    //public ProgrammerTeam updateProgrammerTeam(@PathVariable Long id, @RequestBody ProgrammerTeam programmer){
     //    return this.service.updateProgrammerTeam(id, programmer);
     //}
 

@@ -9,7 +9,7 @@ import java.util.Objects;
 public class Programmer {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // add this to both
     private Long id; // sets the ID to id, generated using auto gen
     private String name;
     private String surname;

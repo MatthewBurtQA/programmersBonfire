@@ -3,12 +3,12 @@ import javax.annotation.Generated;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-
+// Line below may need changing Entity to Identity
 @Entity
 public class ProgrammerTeam {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name; // team name
 

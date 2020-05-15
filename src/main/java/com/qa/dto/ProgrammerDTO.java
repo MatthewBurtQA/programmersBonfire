@@ -4,6 +4,7 @@ package com.qa.dto;
 import com.qa.domain.Programmer;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 // below is a DTO, which is an object for transfering data. Simples.
 public class ProgrammerDTO {
@@ -16,8 +17,8 @@ public class ProgrammerDTO {
     public ProgrammerDTO(){
          // empty
     }
-
-    public ProgrammerDTO(String name, String surname, int age, String jobroll, List<ProgrammerDTO> programmers) {
+    // removed the list from this
+    public ProgrammerDTO(String name, String surname, int age, String jobroll) {
         this.name = name;
         this.surname = surname;
         this.age = age;
@@ -39,4 +40,20 @@ public class ProgrammerDTO {
     public String getJobroll(){return  jobroll;}
     public void setJobroll(String jobroll){this.jobroll = jobroll;}
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ProgrammerDTO that = (ProgrammerDTO) o;
+        return age == that.age &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(surname, that.surname) &&
+                Objects.equals(jobroll, that.jobroll);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, surname, age, jobroll);
+    }
 }

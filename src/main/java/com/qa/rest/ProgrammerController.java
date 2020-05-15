@@ -15,6 +15,7 @@ import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
+@RequestMapping("/programmer")
 public class ProgrammerController {
 
     private final ProgrammerService service;

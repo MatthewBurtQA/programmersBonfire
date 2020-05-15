@@ -22,7 +22,10 @@ import static org.junit.Assert.assertFalse;
 import static org.mockito.Mockito.*;
 
 
-
+@RunWith(MockitoJUnitRunner.class)
 public class ProgrammerControllerUnitTest {
+
+    @InjectMocks
+    private ProgrammerController programmerController; // makes a mock version of this
 
 }

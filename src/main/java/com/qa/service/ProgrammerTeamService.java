@@ -69,7 +69,7 @@ public class ProgrammerTeamService {
 
     public ProgrammerTeamDTO addProgrammerToProgrammerTeam(Long id, Programmer programmer){
         ProgrammerTeam programmerTeam = this.programmerTeamRepository.findById(id).orElseThrow(ProgrammerTeamNotFoundException::new);
-        Programmer tmp = this.programmerRepository.saveAndFlush(programmer); // save to temp var then VVV
+        Programmer tmp = this.programmerRepository.save(programmer); // save to temp var then VVV
         programmerTeam.getProgrammers().add(tmp); // added temp to programmerTeam
         return this.mapToDTO(this.programmerTeamRepository.saveAndFlush(programmerTeam));
     }
